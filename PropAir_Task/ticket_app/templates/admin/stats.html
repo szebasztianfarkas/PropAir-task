@@ -1,0 +1,60 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}Statistics | {{ block.super }}{% endblock %}
+
+{% block content %}
+  <p>
+    <a class="button" href="{% url 'admin:index' %}">← Back to admin</a>
+  </p>
+
+  <h1>Statistics</h1>
+
+  <div class="module">
+    <h2>Totals</h2>
+    <p>Tickets paid in time: <strong>{{ paid_tickets }}</strong></p>
+    <p>Tickets expired: <strong>{{ expired_tickets }}</strong></p>
+  </div>
+
+  <div class="module">
+    <h2>Tickets sold per event</h2>
+    <table class="adminlist">
+      <thead>
+        <tr>
+          <th>ID</th><th>Description</th><th>Date</th><th>Location</th>
+          <th>Capacity</th><th>Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for e in per_event %}
+          <tr>
+            <td>{{ e.id }}</td>
+            <td>{{ e.description }}</td>
+            <td>{{ e.date }}</td>
+            <td>{{ e.location }}</td>
+            <td>{{ e.max_amount }}</td>
+            <td>{{ e.sold }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="6">No events.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="module">
+    <h2>Top 5 users by tickets bought</h2>
+    <table class="adminlist">
+      <thead><tr><th>User</th><th>Tickets</th></tr></thead>
+      <tbody>
+        {% for u in top_users %}
+          <tr>
+            <td>ID: {{ u.id }} — {{ u.username }}</td>
+            <td>{{ u.paid_count }}</td>
+          </tr>
+        {% empty %}
+          <tr><td colspan="2">No users.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

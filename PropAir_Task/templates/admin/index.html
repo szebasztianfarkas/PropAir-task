@@ -1,0 +1,11 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block content %}
+  <p>
+    <a class="button" href="{% url 'ticket_app:admin-stats' %}">Statistics</a>
+  </p>
+
+  {# render the default app list #}
+  {% include "admin/app_list.html" with app_list=app_list show_changelinks=True %}
+{% endblock %}

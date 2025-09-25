@@ -1,5 +1,6 @@
+## API Tester
 
-Small CLI to smoke-test your Django API using JWT auth.  
+Small CLI to smoke-test the Django API using JWT auth.  
 Supports anonymous (`--no-user`), regular user (default), and admin (`--admin-user`) modes.
 
 ---
@@ -26,8 +27,6 @@ pip install -r requirements.txt   # requires: requests
   Alternate styles via `--pay-style`:
   - `orders_id_pay` → `/api/order/<id>/pay/`
   - `orders_pay_id` → `/api/order/pay/<id>/`
-
-> Adjust URLs or use `--pay-style` to match your project.
 
 ---
 
